@@ -13,7 +13,7 @@ Owner can buy and sell the players according to purse balance.
 Admin can also view the bought and tranfered players on Transfered Players Link.
 
 #### User Credentials
-|Name|Password|
+|Username|Password|
 |----|-----|
 |admin|admin|
 |mumbai|admin|
@@ -21,4 +21,6 @@ Admin can also view the bought and tranfered players on Transfered Players Link.
 |banglore|admin|
 
 To login use '/login' path.
+
+Change the database credentials in DB file and Attaching the db of my working.
 
