@@ -1,4 +1,4 @@
-# Symfony App for football Management System
+# Symfony App for Football Management System
 
 The app is created in Symfony framework.
 You can download the code and run `composer install` to install the dependancies.
@@ -16,11 +16,8 @@ Admin can also view the bought and tranfered players on Transfered Players Link.
 |Name|Password|
 |----|-----|
 |admin|admin|
-|----|-----|
 |mumbai|admin|
-|----|-----|
 |chennai|admin|
-|----|-----|
 |banglore|admin|
 
 To login use '/login' path.
