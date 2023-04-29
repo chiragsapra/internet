@@ -1,0 +1,5 @@
+name: internet
+recipe: symfony
+config:
+  webroot: .
+  php: '8.1'

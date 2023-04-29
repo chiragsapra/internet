@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bought/Transfered Players
+
+{% endblock %}
+
+{% block body %}
+	{% for message in app.flashes('success') %}
+		<div class="alert alert-success">
+			{{ message }}
+		</div>
+	{% endfor %}
+
+
+	<h2>List of Bought/Transfered Players</h2>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<td>No.</td>
+				<td>Name</td>
+				<td>From</td>
+				<td>To</td>
+				<td>When</td>
+			</tr>
+		</thead>
+		<tbody>
+			{% for result in data %}
+				<tr>
+					<td>{{ loop.index }}</td>
+					<td>{{ result.name }}</td>
+					<td>{{ result.old }}</td>
+					<td>{{ result.new }}</td>
+					<td>{{ result.when }}</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+{% endblock %}
+

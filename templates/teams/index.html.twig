@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}List of Teams
+{% endblock %}
+
+{% block body %}
+	{% for message in app.flashes('success') %}
+		<div class="alert alert-success">
+			{{ message }}
+		</div>
+	{% endfor %}
+
+	<h2>List of Teams</h2>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<td>ID</td>
+				<td>Name</td>
+				<td>Country</td>
+			</tr>
+		</thead>
+		<tbody>
+			{% for team in teams %}
+				<tr>
+					<td>{{ loop.index }}</td>
+					<td>{{ team.name }}</td>
+					<td>{{ team.country }}</td>
+				</tr>
+				{% for player in team.players %}
+					<tr>
+						<td></td>
+						<td>{{ player }}</td>
+						<td></td>
+					</tr>
+				{% endfor %}
+			{% endfor %}
+		</tbody>
+	</table>
+{% endblock %}
