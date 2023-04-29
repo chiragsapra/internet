@@ -88,22 +88,27 @@ class PlayerController extends AbstractController
             $teamPurse = $teamsRepository->find($team->getId())->getPurse();
             $price = $players->getPrice();
             $oldTeamId = $players->getTeam();
-            $remaining = $teamPurse - $price;
-            $player = $entityManager->find(Players::class, $id);
-            $player->setisAvailable(0);
-            $player->setTeam($team);
-            $team = $entityManager->find(Teams::class, $team->getId());
-            $team->setPurse($remaining);
-            $transfer->setOldTeamId($oldTeamId);
-            $transfer->setNewTeamId($team->getId());
-            $transfer->setPlayerId($id);
-            $transfer->setCreated(date_create());
-            $entityManager->persist($player);
-            $entityManager->persist($team);
-            $entityManager->persist($transfer);
-            $entityManager->flush();
-            $this->addFlash('success', 'The Player ' . $player->getFirstName() . ' ' . $player->getLastName() . ' is addded to your team');
-            return $this->redirect($this->generateUrl('app_player'));
+            if ($teamPurse > $price) {
+                $remaining = $teamPurse - $price;
+                $player = $entityManager->find(Players::class, $id);
+                $player->setisAvailable(0);
+                $player->setTeam($team);
+                $team = $entityManager->find(Teams::class, $team->getId());
+                $team->setPurse($remaining);
+                $transfer->setOldTeamId($oldTeamId);
+                $transfer->setNewTeamId($team->getId());
+                $transfer->setPlayerId($id);
+                $transfer->setCreated(date_create());
+                $entityManager->persist($player);
+                $entityManager->persist($team);
+                $entityManager->persist($transfer);
+                $entityManager->flush();
+                $this->addFlash('success', 'The Player ' . $player->getFirstName() . ' ' . $player->getLastName() . ' is addded to your team');
+                return $this->redirect($this->generateUrl('app_player'));
+            } else {
+                $this->addFlash('success', 'You dont have sufficient balance to buy this player.');
+                return $this->redirect($this->generateUrl('app_player'));
+            }
         }
         $players = $playersRepository->find($id);
         $name = $players->getFirstName() . ' ' . $players->getLastName();
